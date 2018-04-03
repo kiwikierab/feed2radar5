@@ -60,7 +60,7 @@ MLATCLIENTTAG="v0.2.6"
 
 BACKTITLETEXT="ADS-B Exchange Setup Script"
 
-whiptail --backtitle "$BACKTITLETEXT" --title "$BACKTITLETEXT" --yesno "Thanks for choosing to share your data with Radar5!\n\nradar5.cfis a co-op of ADS-B/Mode S/MLAT feeders from around the world. This script will configure your current your ADS-B receiver to share your feeders data with ADS-B Exchange.\n\nWould you like to continue setup?" 13 78
+whiptail --backtitle "$BACKTITLETEXT" --title "$BACKTITLETEXT" --yesno "Thanks for choosing to share your data with Radar5!\n\nradar5.cfis a co-op of ADS-B/Mode S/MLAT feeders from around the New Zealand. This script will configure your current your ADS-B receiver to share your feeders data with Radar5 and ADS-B Exchange.\n\nWould you like to continue setup?" 13 78
 CONTINUESETUP=$?
 if [ $CONTINUESETUP = 1 ]; then
     exit 0
@@ -70,7 +70,7 @@ ADSBEXCHANGEUSERNAME=$(whiptail --backtitle "$BACKTITLETEXT" --title "Radar5 Use
 RECEIVERLATITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Latitude" --nocancel --inputbox "\nEnter your receivers latitude." 9 78 3>&1 1>&2 2>&3)
 RECEIVERLONGITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Longitude" --nocancel --inputbox "\nEnter your recivers longitude." 9 78 3>&1 1>&2 2>&3)
 RECEIVERALTITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Longitude" --nocancel --inputbox "\nEnter your recivers atitude." 9 78 "`curl -s https://maps.googleapis.com/maps/api/elevation/json?locations=$RECEIVERLATITUDE,$RECEIVERLONGITUDE | python -c "import json,sys;obj=json.load(sys.stdin);print obj['results'][0]['elevation'];"`" 3>&1 1>&2 2>&3)
-RECEIVERPORT=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Feed Port" --nocancel --inputbox "\nChange only if you were assigned a custom feed port.\nFor most all users it is required this port remain set to port 5001." 10 78 "5001" 3>&1 1>&2 2>&3)
+RECEIVERPORT=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Feed Port" --nocancel --inputbox "\nChange only if you were assigned a custom feed port.\nFor most all users it is required this port remain set to port 5000." 10 78 "5000" 3>&1 1>&2 2>&3)
 
 
 whiptail --backtitle "$BACKTITLETEXT" --title "$BACKTITLETEXT" --yesno "We are now ready to begin setting up your receiver to feed Radar5.\n\nDo you wish to proceed?" 9 78
