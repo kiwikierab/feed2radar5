@@ -1,5 +1,5 @@
 # feed2radar5
-Feed to radar5
+Feed to Radar5/ADSB Exchange
 
 
 Open terminal and enter the following lines:
