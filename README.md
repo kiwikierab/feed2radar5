@@ -9,10 +9,10 @@ You will need to know the Lat/Lng and Alt of the reciever in order to proceed.
 sudo apt-get install git
 
 
-git clone https://github.com/kiwikierab/radar5feed
+git clone https://github.com/kiwikierab/feed2radar5
 
 
-cd radar5feed
+cd feed2radar5
 
 
 chmod +x setup.sh
