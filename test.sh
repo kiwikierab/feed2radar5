@@ -267,7 +267,7 @@ EOF
 while true
   do
     sleep 30
-    /usr/bin/socat -u TCP:localhost:30005 TCP:radar1.ddns.net:$RECEIVERPORT
+    /usr/bin/socat -u TCP:localhost:30104 TCP:radar1.ddns.net:30104
    done
 EOF
 
