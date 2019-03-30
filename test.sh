@@ -267,7 +267,7 @@ EOF
 while true
   do
     sleep 30
-    /usr/bin/socat -u TCP:localhost:30104 TCP:radar1.ddns.net:30104
+    /usr/bin/socat -u TCP:localhost:30105 TCP:radar1.ddns.net:30104
    done
 EOF
 
