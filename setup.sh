@@ -173,7 +173,7 @@ fi
 while true
   do
     sleep 30
-    /usr/bin/mlat-client --input-type dump1090 --input-connect localhost:30005 --lat $RECEIVERLATITUDE --lon $RECEIVERLONGITUDE --alt $RECEIVERALTITUDE --user $ADSBEXCHANGEUSERNAME --server feed.adsbexchange.com:31090 --no-udp --results beast,connect,localhost:30104
+    /usr/bin/mlat-client --input-type dump1090 --input-connect localhost:30005 --lat $RECEIVERLATITUDE --lon $RECEIVERLONGITUDE --alt $RECEIVERALTITUDE --user $ADSBEXCHANGEUSERNAME --server feed.adsbexchange.com:31090 --no-udp --results beast,connect,localhost:30104 --results beast,listen,30105
   done
 EOF
 
@@ -268,6 +268,49 @@ while true
   do
     sleep 30
     /usr/bin/socat -u TCP:localhost:30005 TCP:feed.radar5.nz:$RECEIVERPORT
+   done
+EOF
+
+    echo 76
+    sleep 0.25
+
+    # Set permissions on the file radarnz-netcat_maint.sh.
+    chmod +x radarnz-netcat_maint.sh >> $LOGFILE
+
+    echo 82
+    sleep 0.25
+
+    # Add a line to execute the netcat maintenance script to /etc/rc.local so it is started after each reboot if one does not already exist.
+    if ! grep -Fxq "$PWD/radarnz-netcat_maint.sh &" /etc/rc.local; then
+        lnum=($(sed -n '/exit 0/=' /etc/rc.local))
+        ((lnum>0)) && sudo sed -i "${lnum[$((${#lnum[@]}-1))]}i $PWD/radarnz-netcat_maint.sh &\n" /etc/rc.local >> $LOGFILE
+    fi
+
+    echo 88
+    sleep 0.25
+
+    # Kill any currently running instances of the adsbexchange-netcat_maint.sh script.
+    PIDS=`ps -efww | grep -w "radarnz-netcat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
+    if [ ! -z "$PIDS" ]; then
+        sudo kill $PIDS >> $LOGFILE
+        sudo kill -9 $PIDS >> $LOGFILE
+    fi
+
+    echo 94
+    sleep 0.25
+
+    # Execute the netcat maintenance script.
+    sudo nohup $PWD/radarnz-netcat_maint.sh > /dev/null 2>&1 & >> $LOGFILE
+    echo 100
+    sleep 0.25
+
+# Create the radarnz maintenance script.
+    tee radarnz-netcat_maint.sh > /dev/null <<EOF
+#!/bin/sh
+while true
+  do
+    sleep 30
+    /usr/bin/socat -u TCP:localhost:30105 TCP:feed.radar5.nz:$RECEIVERPORT
    done
 EOF
 
