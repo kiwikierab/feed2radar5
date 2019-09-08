@@ -309,6 +309,6 @@ EOF
 ## SETUP COMPLETE
 
 # Display the thank you message box.
-whiptail --title "Radar5 Setup Script" --msgbox "\nSetup is now complete.\n\nYour feeder should now be feeding data to Radar5.\nThanks again for choosing to share your data with Radar5!\n\nIf you have questions or encountered any issues while using this script feel free to post them to one of the following places.\n\nhttps://github.com/jprochazka/adsb-exchange\nhttp://radar5.cf/about#contact/" 17 73
+whiptail --title "Radar5 Setup Script" --msgbox "\nSetup is now complete.\n\nYour feeder should now be feeding data to Radar5.\nThanks again for choosing to share your data with Radar5!\n\nIf you have questions or encountered any issues while using this script feel free to post them to one of the following places.\n\nhttps://github.com/jprochazka/adsb-exchange\nhttps://radar5.nz" 17 73
 
 exit 0
