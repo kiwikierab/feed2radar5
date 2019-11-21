@@ -21,24 +21,3 @@ cd feed2radar5
 chmod +x setup.sh
 
 sudo ./setup.sh
-
-
-## Run below commands if you are currently feeding ADSBexchange and wish to send data to radar5.nz
-
-
-
-chmod +x setup_radarnz_feeder.sh
-
-sudo ./setup_radarnz_feeder.sh
-
-
-
-## Run below commands if you are feeing ADSBexchange and wish to forward MLAT to radar5.nz
-
-You will need to add --results beast,listen,30105 to mlat-client line in adsbexhange-mlat_maint.sh 
-
-
-
-chmod +x setup_mlat_forward.sh
-
-sudo ./setup_mlat_forward.sh
