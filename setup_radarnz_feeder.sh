@@ -89,7 +89,7 @@ fi
 while true
   do
     sleep 30
-    /usr/bin/socat -u TCP:localhost:30005 TCP:feed.radar5.nz:$RECEIVERPORT
+    /usr/bin/socat -u TCP:localhost:30005 TCP:adsb.radar5.nz:$RECEIVERPORT
    done
 EOF
 
